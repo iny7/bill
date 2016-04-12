@@ -68,6 +68,10 @@ $(document).ready(function() {
 	// bill相当于DAO层,负责数据的持久化
 	bill.init();
 	updateView();
+	if (window.applicationCache.status == window.applicationCache.UPDATEREADY){  
+		alert.log("程序更新了");
+	    window.applicationCache.update();   
+	}
 
 });
 
