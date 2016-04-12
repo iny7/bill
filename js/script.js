@@ -22,41 +22,41 @@ $(document).ready(function() {
 	console.log(localStorage.bill)
 
 	//测试数据
-	var billObj = {
-		assets : [
-			{
-				'id' : 1,
-				'name' : '房子1',
-				'value' : 200000
-			},
-			{
-				'id' : 2,
-				'name' : '房子2',
-				'value' : 200000
-			},
-			{
-				'id' : 3,
-				'name' : '房子3',
-				'value' : 200000
-			}
-		],
-		'liabilities' : [
-			{
-				'id' : 1,
-				'name' : '欠哥哥',
-				'value' : 2000
-			},
-			{
-				'id' : 2,
-				'name' : '欠姐姐',
-				'value' : 3000
-			},
-		],
-		'assetsCounter' : 3,
-		'liabilitiesCounter' : 2
-	};
-	var billString = JSON.stringify(billObj)
-	localStorage.bill = billString
+	// var billObj = {
+	// 	assets : [
+	// 		{
+	// 			'id' : 1,
+	// 			'name' : '房子1',
+	// 			'value' : 200000
+	// 		},
+	// 		{
+	// 			'id' : 2,
+	// 			'name' : '房子2',
+	// 			'value' : 200000
+	// 		},
+	// 		{
+	// 			'id' : 3,
+	// 			'name' : '房子3',
+	// 			'value' : 200000
+	// 		}
+	// 	],
+	// 	'liabilities' : [
+	// 		{
+	// 			'id' : 1,
+	// 			'name' : '欠哥哥',
+	// 			'value' : 2000
+	// 		},
+	// 		{
+	// 			'id' : 2,
+	// 			'name' : '欠姐姐',
+	// 			'value' : 3000
+	// 		},
+	// 	],
+	// 	'assetsCounter' : 3,
+	// 	'liabilitiesCounter' : 2
+	// };
+	// var billString = JSON.stringify(billObj)
+	// localStorage.bill = billString
 	var resetBtn = document.querySelector('#resetBtn');
 	resetBtn.onclick = function(){
 		if(confirm('确定要重置所有数据吗?')){
