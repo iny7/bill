@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 做移动端很重要,尤其是视口 重中之重! -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>小奇的记账本</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+	    .main {
+	        overflow: hidden;
+	    }
+	    table {
+	        /* 为溢出显示省略号而设置的样式 */
+	        table-layout: fixed;
+	    }
+	    th:first-child{
+	        width: 50%;
+	    }
+	    
+	    th:nth-child(2) {
+	        width: 25%;
+	    }
+	    
+	    td {
+	        overflow: hidden;
+	        text-overflow: ellipsis;
+	    }
+	    .alert {
+	        margin-top: 10px;
+	    }
+	    button{
+	    	outline:none !important;
+	    }
+    </style>
+</head>
+
+<body>
+    <div class="main container-fluid">
+        <h1 class="text-center">小奇的记账本</h1>
+        <button id="resetBtn" class="btn btn-danger pull-right">重置所有数据</button>
+        <nav>
+            <ul class="nav nav-pills">
+                <li role="presentation" class="active"><a data-toggle="tab" href="#tab-assets">资产</a></li>
+                <li role="presentation"><a data-toggle="tab" href="#tab-liabilities">负债</a></li>
+            </ul>
+        </nav>
+        <div class="row">
+            <div class="tab-content col-sm-12">
+                <!-- 资产 -->
+                <section class="tab-pane active" id="tab-assets">
+                    <table class="table table-striped" id="assetsTable">
+                        <tr>
+                            <th>资产</th>
+                            <th>金额</th>
+                            <th></th>
+                        </tr>
+                    </table>
+                    <button class="btn btn-default btn-md" data-toggle="modal" data-target="#add">添加资产</button>
+                </section>
+                <!-- 负债 -->
+                <section class="tab-pane" id="tab-liabilities">
+                    <table class="table table-striped" id="liabilitiesTable">
+                        <tr>
+                            <th>负债</th>
+                            <th>金额</th>
+                            <th></th>
+                        </tr>
+                    </table>
+                    <button class="btn btn-default btn-md" data-toggle="modal" data-target="#add">添加负债</button>
+                </section>
+            </div>
+        </div>
+        <div role="alert">小奇,您当前的总资产为 : <span id="money">111</span>元</div>
+    </div>
+    <!-- 编辑 -->
+    <div class="modal fade" id="edit">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">编辑</h4>
+                </div>
+                <form onsubmit="return false;">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="name">名称</label>
+                            <input type="text" class="form-control" name="name" id="name" placeholder="请输入名称">
+                        </div>
+                        <div class="form-group">
+                            <label for="value">金额</label>
+                            <input type="text" class="form-control" name="value" id="value" placeholder="请输入金额">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default" id="confirm"><span class="glyphicon glyphicon-ok"></span> 确定</button>
+                        <button class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> 取消</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- 删除-->
+    <div id="remove" class="modal fade">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title">操作确认</h4>
+                </div>
+                <div class="modal-body">
+                    <p>您确定要删除该条记录吗?</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="confirm"><span class="glyphicon glyphicon-ok"></span> 确定</button>
+                    <button class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> 取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 添加 -->
+    <div class="modal fade" id="add">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">添加</h4>
+                </div>
+                <form onsubmit="return false;">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="name">名称</label>
+                            <input type="text" class="form-control" id="name" placeholder="请输入名称">
+                        </div>
+                        <div class="form-group">
+                            <label for="value">金额</label>
+                            <input type="text" class="form-control" id="value" placeholder="请输入金额">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button onclick="addItem();" class="btn btn-default" id="confirm"><span class="glyphicon glyphicon-ok"></span> 确定</button>
+                        <button class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> 取消</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bill.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
