@@ -19,7 +19,7 @@
 
 $(document).ready(function() {
 
-	console.log(localStorage.bill)
+	// console.log(localStorage.bill)
 
 	//测试数据
 	// var billObj = {
