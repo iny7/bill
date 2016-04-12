@@ -84,6 +84,7 @@
 						arr[i].name = asset.name;
 						arr[i].value = asset.value;
 						console.log("资产修改成功")
+						this.commit();
 						return true;
 					}
 				}
@@ -104,6 +105,7 @@
 						arr[i].name = liability.name;
 						arr[i].value = liability.value;
 						console.log("负债修改成功")
+						this.commit();
 						return true;
 					}
 				}
@@ -118,6 +120,7 @@
 				if(arr[i].id == id){
 					arr.splice(i, 1);
 					console.log("资产删除成功")
+					this.commit();
 					return true;
 				}
 			}
@@ -130,6 +133,7 @@
 				if(arr[i].id == id){
 					arr.splice(i, 1);
 					console.log("负债删除成功")
+					this.commit();
 					return true;
 				}
 			}
