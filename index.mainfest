@@ -1,0 +1,19 @@
+CACHE MANIFEST
+#v1.0.0
+CACHE:
+js/bill.js
+js/bootstrap.min.js
+js/script.js
+js/jquery-1.11.3.min.js
+css/bootstrap.min.css
+fonts/glyphicons-halflings-regular.eot
+fonts/glyphicons-halflings-regular.svg
+fonts/glyphicons-halflings-regular.ttf
+fonts/glyphicons-halflings-regular.woff
+fonts/glyphicons-halflings-regular.woff2
+#不需要缓存的文件
+NETWORK:
+*
+#无法访问页面
+#FALLBACK:
+#404.html
